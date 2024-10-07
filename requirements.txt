@@ -1,0 +1,12 @@
+torch
+torchvision
+diffusers
+transformers
+timm
+tqdm
+accelerate
+wandb
+requests
+git+https://github.com/openai/CLIP.git
+ftfy
+regex
