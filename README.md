@@ -12,7 +12,9 @@
   <sup>1</sup> KAIST &emsp; <sup>2</sup>Korea University &emsp; <sup>3</sup>Scaled Foundations &emsp; <sup>4</sup>New York University &emsp; <br>
   <sup>*</sup>Equal Advising &emsp; <br>
 </div>
-<h3 align="center">[<a href="https://sihyun.me/REPA">project page</a>]&emsp;[<a href="https://arxiv.org/xxxx.xxxxx">arXiv</a>]</h3>
+<!-- <h3 align="center">[<a href="https://sihyun.me/REPA">project page</a>]&emsp;[<a href="https://arxiv.org/xxxx.xxxxx">arXiv</a>]</h3>-->
+<br>
+<b>Summary</b>: We propose REPresentation Alignment (REPA), a method that aligns noisy input states in diffusion models with representations from pretrained visual encoders. This significantly improves training efficiency and generation quality. REPA speeds up SiT training by 17.5x and achieves state-of-the-art FID=1.42.
 
 ### 1. Environment setup
 
@@ -48,7 +50,7 @@ accelerate launch train.py \
   --data-dir=[YOUR_DATA_PATH]
 ```
 
-Then these scripts will automatically create the folder in `exps` to save logs and checkpoints. You can adjust the following options:
+Then this script will automatically create the folder in `exps` to save logs and checkpoints. You can adjust the following options:
 
 - `--models`: `[SiT-B/2, SiT-L/2, SiT-XL/2]`
 - `--enc-type`: `[dinov2-vit-b, dinov2-vit-l, dinov2-vit-g, dinov1-vit-b, mocov3-vit-b, , mocov3-vit-l, clip-vit-L, jepa-vit-h, mae-vit-l]`
@@ -59,10 +61,10 @@ Then these scripts will automatically create the folder in `exps` to save logs a
 
 For DINOv2 models, it will be automatically downloaded from `torch.hub`. For CLIP models, it will be also automatically downloaded from the CLIP repository. For other pretrained visual encoders, please download the model weights from the below links and place into the following directories with these names:
 
-- `dinov1`: Download the ViT-B/16 model from the [`DINO`](https://github.com/facebookresearch/dino) repository and place them as `./ckpts/dinov1_vitb.pth`
+- `dinov1`: Download the ViT-B/16 model from the [`DINO`](https://github.com/facebookresearch/dino) repository and place it as `./ckpts/dinov1_vitb.pth`
 - `mocov3`: Download the ViT-B/16 or ViT-L/16 model from the [`RCG`](https://github.com/LTH14/rcg) repository and place them as `./ckpts/mocov3_vitb.pth` or `./ckpts/mocov3_vitl.pth`
-- `jepa`: Download the ViT-H/14 model (ImageNet-1K) from the [`I-JEPA`](https://github.com/facebookresearch/ijepa) repository and place them as `./ckpts/ijepa_vith.pth`
-- `mae`: Download the ViT-L model from [`MAE`](https://github.com/facebookresearch/mae) repository and place them as `./ckpts/ijepa_vith.pth`
+- `jepa`: Download the ViT-H/14 model (ImageNet-1K) from the [`I-JEPA`](https://github.com/facebookresearch/ijepa) repository and place it as `./ckpts/ijepa_vith.pth`
+- `mae`: Download the ViT-L model from [`MAE`](https://github.com/facebookresearch/mae) repository and place it as `./ckpts/mae_vitl.pth`
 
 ### 4. Evaluation
 You can generate images (and the .npz file can be used for [ADM evaluation](https://github.com/openai/guided-diffusion/tree/main/evaluations) suite) through the following script:
@@ -82,24 +84,11 @@ torchrun --nnodes=1 --nproc_per_node=8 generate.py \
   --guidance_high=0.7
 ```
 
-We also provide the SiT-XL/2 checkpoint (trained for 4M iterations) used in the final evaluation. [[Link]](https://xxxx)
+We will also provide the SiT-XL/2 checkpoint (trained for 4M iterations) used in the final evaluation. [[Link (coming soon)](https://xxxx)]
 
 ### Note
 
 It's possible that this code may not accurately replicate the results outlined in the paper due to potential human errors during the preparation and cleaning of the code for release. If you encounter any difficulties in reproducing our findings, please don't hesitate to inform us. Additionally, we'll make an effort to carry out sanity-check experiments in the near future.
-
-## Citation
-
-Please consider citing REPA if this repository is useful for your work.
-
-```bibtex
-@article{yu2024repa,
-  title={Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think},
-  author={Sihyun Yu and Sangkyung Kwak and Huiwon Jang and Jongheon Jeong and Jonathan Huang and Jinwoo Shin and Saining Xie},
-  booktitle=arXiv preprint:xxxx.xxxxx,
-  year={2024}
-}
-```
 
 ## Acknowledgement
 
