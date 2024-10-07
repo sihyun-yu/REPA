@@ -3,6 +3,7 @@
 
 <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style type="text/css">
 body {
@@ -184,37 +185,14 @@ figure {
     list-style: none;
 }
 
-.paper-btn-coming-soon {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
 .coming-soon {
     position: absolute;
     top: -15px;
     right: -15px;
 }
 
-.paper-btn {
-  position: relative;
-  text-align: center;
-  display: inline-block;
-  margin: 8px;
-  padding: 10px 16px;
-  border-width: 0;
-  outline: none;
-  border-radius: 10px;
-  background-color: #FF6F61;
-  color: white !important;
-  font-size: 18px;
-  width: 120px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
 .paper-btn:hover {
-    background-color: #FF8563;
+    color: #FF8563;
     transform: translateY(-2px);
 }
 
@@ -222,28 +200,13 @@ figure {
     display: flex;
     justify-content: center;
     margin: 16px 0px;
-}
-
-.github-btn {
-    position: relative;
-    text-align: center;
-    display: inline-block;
-    margin: 8px;
-    padding: 10px 16px;
-    border-width: 0;
-    outline: none;
-    border-radius: 10px;
-    background-color: #24292e;
-    color: white !important;
-    font-size: 18px;
-    width: 120px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    gap: 25px;
+    font-size: 20px;
 }
 
 .github-btn:hover {
-    background-color: #4f5358;
-    transform: translateY(-2px;
+    color: #FF8563;
+    transform: translateY(-2px);
 }
 
 .container {
@@ -345,6 +308,19 @@ pre {
   display: table;
 }
 
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 10px;
+}
+
+.image-grid img {
+    width: 100%; 
+}
+
+.image-grid img:first-child {
+    object-fit: contain; /* 첫 번째 이미지를 크기에 맞게 조정 */
+}
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 500px) {
   .column {
@@ -408,17 +384,26 @@ pre {
 
         <div style="clear: both">
             <div class="paper-btn-parent">
-                <a class="paper-btn" href="https://arxiv.org/abs/2403.14148">
-                    <span class="fa fa-file-text-o"></span>
-                     Paper
-                </a>
-                <a class="github-btn" href="https://github.com/sihyun-yu/CMD">
-                    <span class="fa fa-github"></span>
-                     Code
-                </a>
-            </div>
+                <a class="paper-btn" href="https://link-to-my-paper">
+                    <span class="fas fa-file-alt"></span> 
+                    Paper
+                </a>   
+                <a class="github-btn" href="https://github.com/sihyun-yu/REPA">
+                    <span class="fab fa-github"></span> 
+                    Code
+                </a>           
+           </div>
         </div>
     </div>
+
+    <section>
+        <div class="image-grid">
+            <img src="assets/feat_matching_fig.png" alt="PDF Image">
+            <img src="assets/teaser_plot_all.png" alt="PDF Image">
+        </div>
+        <!-- <img src="assets/qual_progression.jpg" alt="PDF Image"> -->
+        <img src="assets/main_qual_12.png" alt="PDF Image">
+    </section>
 
     <section id="news">
         <hr>
@@ -432,21 +417,45 @@ pre {
         <hr>
         <h2>Abstract</h2>
         <div class="flex-row">
-            <p>
-            Recent studies have shown that the denoising process in (generative) diffusion models can induce meaningful (discriminative) representations inside the model,
-            though the quality of these representations still lags behind those learned through recent self-supervised learning methods. We argue that one main bottleneck
-            in training large-scale diffusion models for generation comes down to learning these good representations, and training can become significantly easier
-            when the model is aided by strong external visual representations. We study this by introducing a straightforward regularization called
-            REPresentation Alignment (REPA), which aligns the projections of noisy input hidden states in denoising networks with clean image representations
-            obtained from external, pretrained visual encoders. The results are striking: our simple strategy yields significant improvements in both training efficiency
-            and generation quality when applied to popular diffusion and flow-based transformers, such as DiTs and SiTs.
-            For instance, our method can speed up SiT training by over 17.5x, matching the performance (without classifier-free guidance) of a SiT-XL model trained
-            for 7M steps in less than 400K steps. Additionally, in terms of final generation quality,
-            our approach achieves a superior FID score of 1.80 when using guidance and 1.42 with guidance interval.
-            </p>
+         <p>
+            Recent studies have shown that the denoising process in (generative) diffusion models can induce meaningful
+            (discriminative) representations inside the model, though the quality of these representations still lags
+            behind those learned through recent self-supervised learning methods. We argue that one main bottleneck in
+            training large-scale diffusion models for generation comes down to learning these good representations,
+            and training can become significantly easier when the model is aided by strong external visual representations.
+            We study this by introducing a straightforward regularization called <b>REPresentation Alignment (REPA)</b>, which aligns
+            the projections of noisy input hidden states in denoising networks with clean image representations obtained from
+            external, pretrained visual encoders. The results are striking: our simple strategy yields significant improvements
+            in both training efficiency and generation quality when applied to popular diffusion and flow-based transformers,
+            such as DiTs and SiTs. For instance, our method can speed up SiT training by over 17.5x, matching the
+            performance (without classifier-free guidance) of a SiT-XL model trained for 7M steps in less than 400K steps.
+            In terms of final generation quality, our approach achieves <b>state-of-the-art results of FID=1.42</b>
+            using classifier-free guidance with the <a href="https://arxiv.org/abs/2404.07724">guidance interval</a>.
+        </p>
         </div>
     </section>
 
+    <section id="method"/>
+        <hr>
+        <h2>Method</h2>
+        <div class="flex-row">
+         <p>
+            Recent studies have shown that the denoising process in (generative) diffusion models can induce meaningful
+            (discriminative) representations inside the model, though the quality of these representations still lags
+            behind those learned through recent self-supervised learning methods. We argue that one main bottleneck in
+            training large-scale diffusion models for generation comes down to learning these good representations,
+            and training can become significantly easier when the model is aided by strong external visual representations.
+            We study this by introducing a straightforward regularization called <b>REPresentation Alignment (REPA)</b>, which aligns
+            the projections of noisy input hidden states in denoising networks with clean image representations obtained from
+            external, pretrained visual encoders. The results are striking: our simple strategy yields significant improvements
+            in both training efficiency and generation quality when applied to popular diffusion and flow-based transformers,
+            such as DiTs and SiTs. For instance, our method can speed up SiT training by over 17.5x, matching the
+            performance (without classifier-free guidance) of a SiT-XL model trained for 7M steps in less than 400K steps.
+            In terms of final generation quality, our approach achieves <b>state-of-the-art results of FID=1.42</b>
+            using classifier-free guidance with the <a href="https://arxiv.org/abs/2404.07724">guidance interval</a>.
+        </p>
+        </div>
+    </section>
 </div>
 </body>
 </html>
