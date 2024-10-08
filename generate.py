@@ -22,7 +22,7 @@ import numpy as np
 import math
 import argparse
 from samplers import euler_sampler, euler_maruyama_sampler
-from utils import load_legacy_checkpoints
+from utils import load_legacy_checkpoints, download_model
 
 def create_npz_from_sample_folder(sample_dir, num=50_000):
     """
@@ -70,8 +70,15 @@ def main(args):
         **block_kwargs,
     ).to(device)
     # Auto-download a pre-trained model or load a custom SiT checkpoint from train.py:
-    ckpt_path = args.ckpt or f"SiT-XL-2-{args.resolution}x{args.resolution}.pt"
-    state_dict = torch.load(ckpt_path, map_location=f'cuda:{device}')['ema']
+    ckpt_path = args.ckpt
+    if ckpt_path is None:
+        args.ckpt = 'SiT-XL-2-256x256.pt'
+        assert args.model == 'SiT-XL/2'
+        assert len(args.projector_embed_dims.split(',')) == 1
+        assert int(args.projector_embed_dims.split(',')[0]) == 768
+        state_dict = download_model('last.pt')
+    else:
+        state_dict = torch.load(ckpt_path, map_location=f'cuda:{device}')['ema']
     if args.legacy:
         state_dict = load_legacy_checkpoints(
             state_dict=state_dict, encoder_depth=args.encoder_depth
