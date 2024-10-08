@@ -333,6 +333,11 @@ pre {
   }
 }
 
+.figure img {
+    width: 100%; 
+}
+
+
 </style>
 
 <script type="text/javascript" src="../js/hidebib.js"></script>
@@ -395,15 +400,9 @@ pre {
            </div>
         </div>
     </div>
-
-    <section>
-        <div class="image-grid">
-            <img src="assets/feat_matching_fig.png" alt="PDF Image">
-            <img src="assets/teaser_plot_all.png" alt="PDF Image">
-        </div>
-        <!-- <img src="assets/qual_progression.jpg" alt="PDF Image"> -->
+    <div class="figure">
         <img src="assets/main_qual_12.png" alt="PDF Image">
-    </section>
+        </div>
 
     <section id="news">
         <hr>
@@ -413,48 +412,22 @@ pre {
         </div>
     </section>
 
-    <section id="abstract"/>
+    <section>
         <hr>
-        <h2>Abstract</h2>
-        <div class="flex-row">
-         <p>
-            Recent studies have shown that the denoising process in (generative) diffusion models can induce meaningful
-            (discriminative) representations inside the model, though the quality of these representations still lags
-            behind those learned through recent self-supervised learning methods. We argue that one main bottleneck in
-            training large-scale diffusion models for generation comes down to learning these good representations,
-            and training can become significantly easier when the model is aided by strong external visual representations.
-            We study this by introducing a straightforward regularization called <b>REPresentation Alignment (REPA)</b>, which aligns
-            the projections of noisy input hidden states in denoising networks with clean image representations obtained from
-            external, pretrained visual encoders. The results are striking: our simple strategy yields significant improvements
-            in both training efficiency and generation quality when applied to popular diffusion and flow-based transformers,
-            such as DiTs and SiTs. For instance, our method can speed up SiT training by over 17.5x, matching the
-            performance (without classifier-free guidance) of a SiT-XL model trained for 7M steps in less than 400K steps.
+        <h2>Overview</h2>
+        <div class="image-grid">
+            <img src="assets/feat_matching_fig.png" alt="PDF Image">
+            <img src="assets/teaser_plot_all.png" alt="PDF Image">
+        </div>
+        <p>
+            <b>REPresentation Alignment (REPA) makes diffusion transformer training significantly easier.</b>
+            Our framework, REPA, explicitly aligns the diffusion model representation with powerful pretrained
+            visual representation through a simple regularization. Notably, model training becomes significantly
+            more efficient and effective, and achieves >17.5x faster convergence than the vanilla model.
             In terms of final generation quality, our approach achieves <b>state-of-the-art results of FID=1.42</b>
             using classifier-free guidance with the <a href="https://arxiv.org/abs/2404.07724">guidance interval</a>.
-        </p>
-        </div>
-    </section>
 
-    <section id="method"/>
-        <hr>
-        <h2>Method</h2>
-        <div class="flex-row">
-         <p>
-            Recent studies have shown that the denoising process in (generative) diffusion models can induce meaningful
-            (discriminative) representations inside the model, though the quality of these representations still lags
-            behind those learned through recent self-supervised learning methods. We argue that one main bottleneck in
-            training large-scale diffusion models for generation comes down to learning these good representations,
-            and training can become significantly easier when the model is aided by strong external visual representations.
-            We study this by introducing a straightforward regularization called <b>REPresentation Alignment (REPA)</b>, which aligns
-            the projections of noisy input hidden states in denoising networks with clean image representations obtained from
-            external, pretrained visual encoders. The results are striking: our simple strategy yields significant improvements
-            in both training efficiency and generation quality when applied to popular diffusion and flow-based transformers,
-            such as DiTs and SiTs. For instance, our method can speed up SiT training by over 17.5x, matching the
-            performance (without classifier-free guidance) of a SiT-XL model trained for 7M steps in less than 400K steps.
-            In terms of final generation quality, our approach achieves <b>state-of-the-art results of FID=1.42</b>
-            using classifier-free guidance with the <a href="https://arxiv.org/abs/2404.07724">guidance interval</a>.
         </p>
-        </div>
     </section>
 </div>
 </body>
