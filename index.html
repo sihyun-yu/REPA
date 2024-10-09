@@ -460,7 +460,7 @@ pre {
         <p>
             <q>    
                 <b>The performance of generative diffusion models can be improved dramatically when they are supported by an
-                external representation—a high-quality, pre-trained representation from another model, such as a self-supervised visual encoder.
+                external high-quality, pre-trained representation from another model, such as a self-supervised visual encoder.
             </b>
             </q>    
         </p>
@@ -490,7 +490,8 @@ pre {
         <hr>
         <h3>Alignment behavior for a pretrained SiT model</h3>
         <p>
-            We empirically investigate the feature alignment between DINOv2-g and the original SiT-XL/2 checkpoint
+            We empirically investigate the feature alignment between <a href="https://dinov2.metademolab.com/">DINOv2-g</a>
+            and the original <a href="https://scalable-interpolant.github.io/">SiT-XL/2</a> checkpoint
             trained for 7M iterations.
             Similar to prior studies, we first observe that pretrained diffusion models do indeed learn meaningful
             discriminative representations. However, these representations
@@ -542,7 +543,7 @@ pre {
             We also examine the scalability of REPA by varying pretrained encoders and diffusion transformer model sizes,
             showing that aligning with better visual representations leads to improved generation and linear probing results.
             REPA also provides more significant speedups in larger models, achieving faster FID-50K improvements compared to 
-            anilla models. Additionally, increasing model size yields faster gains in both generation and linear evaluation.
+            vanilla models. Additionally, increasing model size yields faster gains in both generation and linear evaluation.
         </p>
         <div class="image-grid-three">
             <img src="assets/encoder_type.png" alt="PDF Image">
