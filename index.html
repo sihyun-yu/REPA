@@ -367,6 +367,11 @@ pre {
     width: 100%; 
 }
 
+blockquote {
+    background-color: rgba(14, 113, 14, 0.2); /* 투명도 있는 배경색 */
+    padding: 5px;
+    margin: 5px 0;
+}
 
 </style>
 
@@ -458,11 +463,13 @@ pre {
             In particular, we show: 
         </p>
         <p>
-            <q>    
+            <blockquote>    
+                <p>
                 <b>The performance of generative diffusion models can be improved dramatically when they are supported by an
-                external high-quality, pre-trained representation from another model, such as a self-supervised visual encoder.
+                external high-quality representation from another model, such as a self-supervised visual encoder.
+                </p>
             </b>
-            </q>    
+            </blockquote>    
         </p>
         <p>
             Specifically, we introduce <b>REPresentation Alignment (REPA)</b>, a simple regularization technique
@@ -497,7 +504,7 @@ pre {
             discriminative representations. However, these representations
             are significantly inferior to those produced by DINOv2. Next, we find that the alignment between the 
             representations learned by the diffusion model and those of DINOv2 is still considered weak, 
-            which we study by measuring their <i>representation alignment</i>.
+            which we study by measuring their <a href="https://phillipi.github.io/prh/"><i>representation alignment</i></a>.
             Finally, we observe this alignment between diffusion models and DINOv2 improves consistently with longer
             training and larger models.
         </p>
