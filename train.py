@@ -342,10 +342,9 @@ def main(args):
                         ys,
                         num_steps=50, 
                         cfg_scale=4.0,
-                        prediction=args.prediction,
                         guidance_low=0.,
                         guidance_high=1.,
-                        path=args.path_type,
+                        path_type=args.path_type,
                         heun=False,
                     ).to(torch.float32)
                     samples = vae.decode((samples -  latents_bias) / latents_scale).sample
@@ -383,8 +382,8 @@ def parse_args(input_args=None):
     parser = argparse.ArgumentParser(description="Training")
 
     # logging:
-    parser.add_argument("--output_dir", type=str, default="exps")
-    parser.add_argument("--exp_name", type=str, required=True)
+    parser.add_argument("--output-dir", type=str, default="exps")
+    parser.add_argument("--exp-name", type=str, required=True)
     parser.add_argument("--logging-dir", type=str, default="logs")
     parser.add_argument("--report-to", type=str, default="wandb")
     parser.add_argument("--sampling-steps", type=int, default=10000)
