@@ -101,7 +101,7 @@ We also appreciate [Kyungmin Lee](https://kyungmnlee.github.io/) for providing t
 @article{yu2024repa,
   title={Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think},
   author={Sihyun Yu and Sangkyung Kwak and Huiwon Jang and Jongheon Jeong and Jonathan Huang and Jinwoo Shin and Saining Xie},
-  year={2022},
+  year={2024},
   journal={arXiv preprint arXiv:2410.06940},
 }
 ```
