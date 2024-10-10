@@ -12,7 +12,7 @@
   <sup>1</sup> KAIST &emsp; <sup>2</sup>Korea University &emsp; <sup>3</sup>Scaled Foundations &emsp; <sup>4</sup>New York University &emsp; <br>
   <sup>*</sup>Equal Advising &emsp; <br>
 </div>
-<!-- <h3 align="center">[<a href="https://sihyun.me/REPA">project page</a>]&emsp;[<a href="https://arxiv.org/xxxx.xxxxx">arXiv</a>]</h3>-->
+<h3 align="center">[<a href="https://sihyun.me/REPA">project page</a>]&emsp;[<a href="http://arxiv.org/abs/2410.06940">arXiv</a>]</h3>
 <br>
 <b>Summary</b>: We propose REPresentation Alignment (REPA), a method that aligns noisy input states in diffusion models with representations from pretrained visual encoders. This significantly improves training efficiency and generation quality. REPA speeds up SiT training by 17.5x and achieves state-of-the-art FID=1.42.
 
@@ -94,3 +94,15 @@ It's possible that this code may not accurately replicate the results outlined i
 
 This code is mainly built upon [DiT](https://github.com/facebookresearch/DiT), [SiT](https://github.com/willisma/SiT), [edm2](https://github.com/NVlabs/edm2), and [RCG](https://github.com/LTH14/rcg) repositories.\
 We also appreciate [Kyungmin Lee](https://kyungmnlee.github.io/) for providing the initial version of the implementation.
+
+## BibTeX
+
+```bibtex
+@article{yu2024repa,
+  title={Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think},
+  author={Sihyun Yu and Sangkyung Kwak and Huiwon Jang and Jongheon Jeong and Jonathan Huang and Jinwoo Shin and Saining Xie},
+  year={2022},
+  journal={arXiv preprint arXiv:2410.06940},
+}
+```
+
