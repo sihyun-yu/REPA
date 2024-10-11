@@ -210,8 +210,8 @@ if __name__ == "__main__":
     parser.add_argument("--path-type", type=str, default="linear", choices=["linear", "cosine"])
     parser.add_argument("--num-steps", type=int, default=50)
     parser.add_argument("--heun", action=argparse.BooleanOptionalAction, default=False) # only for ode
-    parser.add_argument("--guidance_low", type=float, default=0.)
-    parser.add_argument("--guidance_high", type=float, default=1.)
+    parser.add_argument("--guidance-low", type=float, default=0.)
+    parser.add_argument("--guidance-high", type=float, default=1.)
 
     # will be deprecated
     parser.add_argument("--legacy", action=argparse.BooleanOptionalAction, default=False) # only for ode
