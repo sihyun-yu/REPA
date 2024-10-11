@@ -74,14 +74,14 @@ torchrun --nnodes=1 --nproc_per_node=8 generate.py \
   --model SiT-XL/2 \
   --num-fid-samples 50000
   --ckpt YOUR_CHECKPOINT_PATH \
-  --path_type=linear \
-  --encoder_depth=8 \
-  --projector_embed_dims=768 \
+  --path-type=linear \
+  --encoder-depth=8 \
+  --projector-embed-dims=768 \
   --per-proc-batch-size=64 \
   --mode=sde \
-  --num_steps=250 \
+  --num-steps=250 \
   --cfg-scale=1.8 \
-  --guidance_high=0.7
+  --guidance-high=0.7
 ```
 
 We also provide the SiT-XL/2 checkpoint (trained for 4M iterations) used in the final evaluation. It will be automatically downloaed if you do not specify `--ckpt`.
