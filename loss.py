@@ -58,7 +58,7 @@ class SILoss:
         elif self.weighting == "lognormal":
             # sample timestep according to log-normal distribution of sigmas following EDM
             rnd_normal = torch.randn((images.shape[0], 1 ,1, 1))
-            sigma = (rnd_normal * self.P_std + self.P_mean).exp()
+            sigma = rnd_normal.exp()
             if self.path_type == "linear":
                 time_input = sigma / (1 + sigma)
             elif self.path_type == "cosine":

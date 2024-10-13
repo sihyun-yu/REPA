@@ -1,5 +1,9 @@
 <h1 align="center"> Representation Alignment for Generation: <br>Training Diffusion Transformers Is Easier Than You Think
 </h1>
+
+[![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.06940-b31b1b.svg)](https://arxiv.org/abs/2410.06940)&nbsp;
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/representation-alignment-for-generation/image-generation-on-imagenet-256x256)](https://paperswithcode.com/sota/image-generation-on-imagenet-256x256?p=representation-alignment-for-generation)
+
 <div align="center">
   <a href="https://sihyun.me/" target="_blank">Sihyun&nbsp;Yu</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
   <a href="https://www.linkedin.com/in/SangkyungKwak/" target="_blank">Sangkyung&nbsp;Kwak</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
@@ -14,6 +18,7 @@
 </div>
 <h3 align="center">[<a href="https://sihyun.me/REPA">project page</a>]&emsp;[<a href="http://arxiv.org/abs/2410.06940">arXiv</a>]</h3>
 <br>
+
 <b>Summary</b>: We propose REPresentation Alignment (REPA), a method that aligns noisy input states in diffusion models with representations from pretrained visual encoders. This significantly improves training efficiency and generation quality. REPA speeds up SiT training by 17.5x and achieves state-of-the-art FID=1.42.
 
 ### 1. Environment setup
@@ -72,7 +77,7 @@ You can generate images (and the .npz file can be used for [ADM evaluation](http
 ```bash
 torchrun --nnodes=1 --nproc_per_node=8 generate.py \
   --model SiT-XL/2 \
-  --num-fid-samples 50000
+  --num-fid-samples 50000 \
   --ckpt YOUR_CHECKPOINT_PATH \
   --path-type=linear \
   --encoder-depth=8 \
