@@ -89,7 +89,7 @@ torchrun --nnodes=1 --nproc_per_node=8 generate.py \
   --guidance-high=0.7
 ```
 
-We also provide the SiT-XL/2 checkpoint (trained for 4M iterations) used in the final evaluation. It will be automatically downloaed if you do not specify `--ckpt`.
+We also provide the SiT-XL/2 checkpoint (trained for 4M iterations) used in the final evaluation. It will be automatically download if you do not specify `--ckpt`.
 
 ### Note
 
