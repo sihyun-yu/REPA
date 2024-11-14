@@ -121,11 +121,6 @@ def main(args):
         z = torch.randn(n, model.in_channels, latent_size, latent_size, device=device)
         y = torch.randint(0, args.num_classes, (n,), device=device)
 
-        # Setup classifier-free guidance:
-        if using_cfg:
-            z = torch.cat([z, z], 0)
-            y_null = torch.tensor([1000] * n, device=device)
-            y = torch.cat([y, y_null], 0)
         # Sample images:
         sampling_kwargs = dict(
             model=model, 
@@ -145,8 +140,6 @@ def main(args):
                 samples = euler_sampler(**sampling_kwargs).to(torch.float32)
             else:
                 raise NotImplementedError()
-            if using_cfg:
-                samples, _ = samples.chunk(2, dim=0)  # Remove null class samples
 
             latents_scale = torch.tensor(
                 [0.18215, 0.18215, 0.18215, 0.18215, ]
