@@ -250,7 +250,7 @@ class SiT(nn.Module):
     def unpatchify(self, x, patch_size=None):
         """
         x: (N, T, patch_size**2 * C)
-        imgs: (N, H, W, C)
+        imgs: (N, C, H, W)
         """
         c = self.out_channels
         p = self.x_embedder.patch_size[0] if patch_size is None else patch_size
@@ -259,7 +259,7 @@ class SiT(nn.Module):
 
         x = x.reshape(shape=(x.shape[0], h, w, p, p, c))
         x = torch.einsum('nhwpqc->nchpwq', x)
-        imgs = x.reshape(shape=(x.shape[0], c, h * p, h * p))
+        imgs = x.reshape(shape=(x.shape[0], c, h * p, w * p))
         return imgs
     
     def forward(self, x, t, y, return_logvar=False):
