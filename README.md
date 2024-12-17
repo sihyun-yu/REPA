@@ -71,7 +71,10 @@ For DINOv2 models, it will be automatically downloaded from `torch.hub`. For CLI
 - `jepa`: Download the ViT-H/14 model (ImageNet-1K) from the [`I-JEPA`](https://github.com/facebookresearch/ijepa) repository and place it as `./ckpts/ijepa_vith.pth`
 - `mae`: Download the ViT-L model from [`MAE`](https://github.com/facebookresearch/mae) repository and place it as `./ckpts/mae_vitl.pth`
 
-**[12/17/2024]**: We also support training on 512x512 resolution. Please use the following script:
+**[12/17/2024]**: We also support training on 512x512 resolution (ImageNet) and a text-to-image generation on MS-COCO.
+
+For ImageNet 512x512, please use the following script:
+
 ```bash
 accelerate launch train.py \
   --report-to="wandb" \
@@ -93,8 +96,28 @@ accelerate launch train.py \
 
 You also need a new data preprocessing that resizes each image to 512x512 resolution and encodes each image as 64x64 resolution latent vectors (using stable-diffusion VAE). This script is also provided in our preprocessing guide.
 
+For text-to-image generation, please follow the data preprocessing protocol in [U-ViT](https://github.com/baofff/U-ViT/tree/main/scripts) before lanuching experiments. After that, you should be able to lanuch an experiment through the following script:
+
+```bash
+accelerate launch train_t2i.py \
+  --report-to="wandb" \
+  --allow-tf32 \
+  --mixed-precision="fp16" \
+  --seed=0 \
+  --path-type="linear" \
+  --prediction="v" \
+  --weighting="uniform" \
+  --enc-type="dinov2-vit-b" \
+  --proj-coeff=0.5 \
+  --encoder-depth=8 \
+  --output-dir="exps" \
+  --exp-name="t2i_repa" \
+  --data-dir=[YOUR_DATA_PATH]
+```
+
 
 ### 4. Evaluation
+
 You can generate images (and the .npz file can be used for [ADM evaluation](https://github.com/openai/guided-diffusion/tree/main/evaluations) suite) through the following script:
 
 ```bash
@@ -133,4 +156,3 @@ We also appreciate [Kyungmin Lee](https://kyungmnlee.github.io/) for providing t
   journal={arXiv preprint arXiv:2410.06940},
 }
 ```
-
