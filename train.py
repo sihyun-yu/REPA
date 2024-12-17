@@ -37,9 +37,10 @@ CLIP_DEFAULT_MEAN = (0.48145466, 0.4578275, 0.40821073)
 CLIP_DEFAULT_STD = (0.26862954, 0.26130258, 0.27577711)
 
 def preprocess_raw_image(x, enc_type):
+    resolution = x.shape[-1]
     if 'clip' in enc_type:
         x = x / 255.
-        x = torch.nn.functional.interpolate(x, 224, mode='bicubic')
+        x = torch.nn.functional.interpolate(x, 224 * (resolution // 256), mode='bicubic')
         x = Normalize(CLIP_DEFAULT_MEAN, CLIP_DEFAULT_STD)(x)
     elif 'mocov3' in enc_type or 'mae' in enc_type:
         x = x / 255.
@@ -47,14 +48,14 @@ def preprocess_raw_image(x, enc_type):
     elif 'dinov2' in enc_type:
         x = x / 255.
         x = Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)(x)
-        x = torch.nn.functional.interpolate(x, 224, mode='bicubic')
+        x = torch.nn.functional.interpolate(x, 224 * (resolution // 256), mode='bicubic')
     elif 'dinov1' in enc_type:
         x = x / 255.
         x = Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)(x)
     elif 'jepa' in enc_type:
         x = x / 255.
         x = Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)(x)
-        x = torch.nn.functional.interpolate(x, 224, mode='bicubic')
+        x = torch.nn.functional.interpolate(x, 224 * (resolution // 256), mode='bicubic')
 
     return x
 
@@ -153,10 +154,12 @@ def main(args):
     assert args.resolution % 8 == 0, "Image size must be divisible by 8 (for the VAE encoder)."
     latent_size = args.resolution // 8
 
-    if args.enc_type != 'None':
-        encoders, encoder_types, architectures = load_encoders(args.enc_type, device)
+    if args.enc_type != None:
+        encoders, encoder_types, architectures = load_encoders(
+            args.enc_type, device, args.resolution
+            )
     else:
-        encoders, encoder_types, architectures = [None], [None], [None]
+        raise NotImplementedError()
     z_dims = [encoder.embed_dim for encoder in encoders] if args.enc_type != 'None' else [0]
     block_kwargs = {"fused_attn": args.fused_attn, "qk_norm": args.qk_norm}
     model = SiT_models[args.model](
@@ -262,7 +265,8 @@ def main(args):
 
     # Labels to condition the model with (feel free to change):
     sample_batch_size = 64 // accelerator.num_processes
-    _, gt_xs, _ = next(iter(train_dataloader))
+    gt_raw_images, gt_xs, _ = next(iter(train_dataloader))
+    assert gt_raw_images.shape[-1] == args.resolution
     gt_xs = gt_xs[:sample_batch_size]
     gt_xs = sample_posterior(
         gt_xs.to(device), latents_scale=latents_scale, latents_bias=latents_bias
@@ -399,7 +403,7 @@ def parse_args(input_args=None):
 
     # dataset
     parser.add_argument("--data-dir", type=str, default="../data/imagenet256")
-    parser.add_argument("--resolution", type=int, choices=[256], default=256)
+    parser.add_argument("--resolution", type=int, choices=[256, 512], default=256)
     parser.add_argument("--batch-size", type=int, default=256)
 
     # precision
