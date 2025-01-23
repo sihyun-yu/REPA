@@ -149,10 +149,10 @@ We also appreciate [Kyungmin Lee](https://kyungmnlee.github.io/) for providing t
 ## BibTeX
 
 ```bibtex
-@article{yu2024repa,
+@inproceedings{yu2025repa,
   title={Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think},
   author={Sihyun Yu and Sangkyung Kwak and Huiwon Jang and Jongheon Jeong and Jonathan Huang and Jinwoo Shin and Saining Xie},
-  year={2024},
-  journal={arXiv preprint arXiv:2410.06940},
+  year={2025},
+  booktitle={International Conference on Learning Representations},
 }
 ```
